@@ -19,9 +19,24 @@ paddle_a.penup()
 paddle_a.goto(-700, 0)
 
 # Paddle B
+paddle_b = turtle.Turtle()
 
+paddle_b.speed(0)
+paddle_b.shape("square")
+paddle_b.color("white")
+paddle_b.shapesize(stretch_wid=10, stretch_len=2)
+paddle_b.penup()
+paddle_b.goto(700, 0)
 
 #Ball
+ball = turtle.Turtle()
+
+ball.speed(0)
+ball.shape("circle")
+ball.color("white")
+ball.shapesize(stretch_wid=2, stretch_len=2)
+ball.penup()
+
 
 
 # Main game loop
