@@ -3,6 +3,20 @@ import turtle
 def paddle_move(paddle, dy):
     paddle.sety(paddle.ycor() + dy)
 
+class Paddle(turtle.Turtle):
+    def __init__(self, xcor, shape="square", color="white"):
+        turtle.Turtle.__init__(self)
+        self.penup()
+        self.speed(0)
+        self.shapesize(stretch_wid=10, stretch_len=2)
+        self.shape(shape)
+        self.color(color)
+        self.setx(xcor)
+
+    def up(self):
+        pass
+        
+
 
 wn = turtle.Screen()
 wn.title("Kai's Pong")
@@ -13,14 +27,7 @@ wn.tracer(0)
 
 # Paddle A
 #initialize turtle
-paddle_a = turtle.Turtle()
-
-paddle_a.speed(0)
-paddle_a.shape("square")
-paddle_a.color("white")
-paddle_a.shapesize(stretch_wid=10, stretch_len=2)
-paddle_a.penup()
-paddle_a.goto(-700, 0)
+paddle_a = Paddle(-700)
 
 # Paddle A move
 def paddle_a_up():
@@ -31,14 +38,7 @@ def paddle_a_down():
 
 
 # Paddle B
-paddle_b = turtle.Turtle()
-
-paddle_b.speed(0)
-paddle_b.shape("square")
-paddle_b.color("white")
-paddle_b.shapesize(stretch_wid=10, stretch_len=2)
-paddle_b.penup()
-paddle_b.goto(700, 0)
+paddle_b = Paddle(700)
 
 #Paddle B move
 def paddle_b_up():
