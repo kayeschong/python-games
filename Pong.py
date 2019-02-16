@@ -1,8 +1,5 @@
 import turtle
 
-def paddle_move(paddle, dy):
-    paddle.sety(paddle.ycor() + dy)
-
 class Paddle(turtle.Turtle):
     def __init__(self, xcor, shape="square", color="white"):
         turtle.Turtle.__init__(self)
@@ -13,9 +10,14 @@ class Paddle(turtle.Turtle):
         self.color(color)
         self.setx(xcor)
 
+    def move_vertical(self, dy):
+        self.sety(self.ycor() + dy)
+
     def up(self):
-        pass
-        
+        self.move_vertical(40)
+
+    def down(self):
+        self.move_vertical(-40)
 
 
 wn = turtle.Screen()
@@ -29,23 +31,8 @@ wn.tracer(0)
 #initialize turtle
 paddle_a = Paddle(-700)
 
-# Paddle A move
-def paddle_a_up():
-    paddle_move(paddle_a, 40)
-
-def paddle_a_down():
-    paddle_move(paddle_a, -40)
-
-
 # Paddle B
 paddle_b = Paddle(700)
-
-#Paddle B move
-def paddle_b_up():
-    paddle_move(paddle_b, 40)
-
-def paddle_b_down():
-    paddle_move(paddle_b, -40)
 
 
 #Ball
@@ -58,10 +45,11 @@ ball.shapesize(stretch_wid=2, stretch_len=2)
 ball.penup()
 
 wn.listen()
-wn.onkeypress(paddle_a_up, "w")
-wn.onkeypress(paddle_a_down, "s")
-wn.onkeypress(paddle_b_up, "Up")
-wn.onkeypress(paddle_b_down, "Down")
+wn.onkeypress(paddle_a.up, "w")
+wn.onkeypress(paddle_a.down, "s")
+wn.onkeypress(paddle_b.up, "Up")
+wn.onkeypress(paddle_b.up, "Down")
+
 # Main game loop
 while True:
     
