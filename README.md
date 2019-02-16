@@ -1,5 +1,5 @@
 # python-games
-Learn to make simple games in python
+Learn to make simple games in python, prequel to simulation games
 
 Pong
 Classic Pong game with guidance from freecodecamp
