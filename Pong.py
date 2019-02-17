@@ -56,10 +56,10 @@ ball = Ball()
 # useful variables
 height = wn.window_height()
 width = wn.window_width()
-left_border = -width//2
-right_border = width//2
-top_border = height//2
-bottom_border = -height//2
+left_border = -width // 2
+right_border = width // 2
+top_border = height // 2
+bottom_border = -height // 2
 width_a = paddle_a.shapesize()[0] * 20
 length_a = paddle_a.shapesize()[1] * 20
 width_b = paddle_b.shapesize()[0] * 20
@@ -76,22 +76,33 @@ scoreboard.color("white")
 scoreboard.penup()
 scoreboard.hideturtle()
 scoreboard.goto(0, 0.4 * height)
-scoreboard.write("Player A: {0}    Player B: {1}".format(score_a, score_b), align="center", font=("Arial", 24, "normal"))
+scoreboard.write("Player A: {0}    Player B: {1}".format(score_a, score_b), align="center",
+                 font=("Arial", 24, "normal"))
 
 # Enable paddle movements
 wn.listen()
+
+
 def a_up():
-    if paddle_a.ycor() + width_a/2 < height/2:
+    if paddle_a.ycor() + width_a / 2 < height / 2:
         paddle_a.up()
+
+
 def a_down():
-    if paddle_a.ycor() - width_a/2 > -height/2:
+    if paddle_a.ycor() - width_a / 2 > -height / 2:
         paddle_a.down()
+
+
 def b_up():
-    if paddle_b.ycor() + width_b/2 < height/2:
+    if paddle_b.ycor() + width_b / 2 < height / 2:
         paddle_b.up()
+
+
 def b_down():
-    if paddle_b.ycor() - width_b/2 > -height/2:
+    if paddle_b.ycor() - width_b / 2 > -height / 2:
         paddle_b.down()
+
+
 wn.onkeypress(a_up, "w")
 wn.onkeypress(a_down, "s")
 wn.onkeypress(b_up, "Up")
@@ -106,7 +117,7 @@ paddle_b.ondrag(paddle_b.goto, 3)
 # Game variables
 
 flash_color = "red"
-speed = 20
+speed = 10
 # Main game loop
 
 while True:
@@ -131,7 +142,8 @@ while True:
         # Player 1 scores
         score_a += 1
         scoreboard.clear()
-        scoreboard.write("Player A: {0}    Player B: {1}".format(score_a, score_b), align="center", font=("Arial", 24, "normal"))
+        scoreboard.write("Player A: {0}    Player B: {1}".format(score_a, score_b), align="center",
+                         font=("Arial", 24, "normal"))
         # increase speed
         speed += 0.1
     elif ball.xcor() < left_border:
@@ -139,14 +151,15 @@ while True:
         # Player 2 scores
         score_b += 1
         scoreboard.clear()
-        scoreboard.write("Player A: {0}    Player B: {1}".format(score_a, score_b), align="center", font=("Arial", 24, "normal"))
+        scoreboard.write("Player A: {0}    Player B: {1}".format(score_a, score_b), align="center",
+                         font=("Arial", 24, "normal"))
         # increase speed
         speed += 0.1
     # check paddle A
 
     paddle_a.color("white")
     paddle_b.color("white")
-    if paddle_a.ycor() - width_a/2 - 10 < ball.ycor() < paddle_a.ycor() + width_a/2 + 10:
+    if paddle_a.ycor() - width_a / 2 - 10 < ball.ycor() < paddle_a.ycor() + width_a / 2 + 10:
         if paddle_a.xcor() + 10 < ball.xcor() < paddle_a.xcor() + 30:  # if hit front
             paddle_a.color(flash_color)
             ball.setx = int(paddle_a.xcor()) + 60
@@ -157,14 +170,13 @@ while True:
             ball.setx = int(paddle_a.xcor())
             ball.setheading(360 - ball.heading())
 
-    if paddle_b.ycor() - width_b/2 - 10 < ball.ycor() < paddle_b.ycor() + width_b/2 + 10:
+    if paddle_b.ycor() - width_b / 2 - 10 < ball.ycor() < paddle_b.ycor() + width_b / 2 + 10:
         if paddle_b.xcor() - 30 < ball.xcor() < paddle_b.xcor() - 10:
             paddle_b.color(flash_color)
             ball.setx = int(paddle_b.xcor()) - 60
             ball.setheading(180 - ball.heading())
             speed += 0.05
-        elif paddle_b.xcor() -10 < ball.xcor() < paddle_b.xcor() + 30:
+        elif paddle_b.xcor() - 10 < ball.xcor() < paddle_b.xcor() + 30:
             paddle_b.color(flash_color)
             ball.setx = int(paddle_b.xcor())
             ball.setheading(360 - ball.heading())
-    print(speed)
